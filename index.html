@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Planner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header id="header">
+    <h1>Study Planner</h1>
+  </header>
+
+  <section id="dashboard">
+    <div class="dashboard-item">
+      <span class="dashboard-label">Total Tasks</span>
+      <span id="total-count">0</span>
+    </div>
+    <div class="dashboard-item">
+      <span class="dashboard-label">Completed Tasks</span>
+      <span id="completed-count">0</span>
+    </div>
+    <div class="dashboard-item">
+      <span class="dashboard-label">Remaining Tasks</span>
+      <span id="remaining-count">0</span>
+    </div>
+  </section>
+
+  <!-- Two-column layout: form + task list side-by-side on wide screens -->
+  <div class="two-col">
+
+    <!-- Task Input Form Section -->
+    <section id="task-form-section">
+      <h2>Add New Task</h2>
+      <form id="task-form" novalidate>
+
+        <div class="form-group">
+          <label for="subject">Subject Name</label>
+          <input type="text" id="subject" name="subject" maxlength="100" placeholder="e.g. Java" />
+          <span class="error-msg" id="subject-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="topic">Topic Name</label>
+          <input type="text" id="topic" name="topic" maxlength="100" placeholder="e.g. Arrays" />
+          <span class="error-msg" id="topic-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="exam-date">Exam Date</label>
+          <input type="date" id="exam-date" name="examDate" />
+          <span class="error-msg" id="exam-date-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="study-hours">Available Study Hours</label>
+          <input type="number" id="study-hours" name="studyHours" step="0.5" min="0.5" max="24" placeholder="e.g. 2" />
+          <span class="error-msg" id="study-hours-error"></span>
+        </div>
+
+        <button type="submit" id="add-task-btn">Add Task</button>
+        <div id="form-success" class="success-msg"></div>
+
+      </form>
+    </section>
+
+    <!-- Task List Section -->
+    <section id="task-list-section">
+      <h2>My Tasks</h2>
+      <div id="task-list"></div>
+    </section>
+
+  </div><!-- /.two-col -->
+
+  <!-- Generate Study Plan Button -->
+  <div class="generate-btn-wrapper">
+    <button id="generate-btn">Generate Study Plan</button>
+  </div>
+
+  <!-- Study Plan Section -->
+  <section id="study-plan-section">
+    <h2>Study Plan</h2>
+    <div id="study-plan"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

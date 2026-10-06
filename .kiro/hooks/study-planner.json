@@ -1,0 +1,56 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Sync tasks to MCP on script.js save",
+      "trigger": "PostFileSave",
+      "matcher": "script\\.js$",
+      "description": "When script.js is saved, reminds Kiro to keep the MCP server tools in sync with any new task logic added to the frontend.",
+      "action": {
+        "type": "prompt",
+        "prompt": "script.js was just saved. Check if any task-related logic (add, delete, completion, scheduling) was changed. If so, verify that the MCP server tools in mcp-server/index.js still match the same business rules (validation ranges, sort order, day-overflow logic). List any discrepancies found."
+      }
+    },
+    {
+      "name": "Validate MCP server on mcp-server save",
+      "trigger": "PostFileSave",
+      "matcher": "mcp-server/index\\.js$",
+      "description": "After editing the MCP server, verify the server still starts correctly.",
+      "action": {
+        "type": "command",
+        "command": "node -e \"require('./mcp-server/index.js')\" --check 2>&1 || echo MCP_SERVER_SYNTAX_ERROR",
+        "timeout": 10
+      }
+    },
+    {
+      "name": "Remind to regenerate study plan on task data change",
+      "trigger": "PostFileSave",
+      "matcher": "data/tasks\\.json$",
+      "description": "When the tasks data file is modified directly, reminds Kiro that the frontend study plan may need to be regenerated.",
+      "action": {
+        "type": "prompt",
+        "prompt": "data/tasks.json was just modified. If tasks were added, removed, or updated, remind the user that they should click 'Generate Study Plan' in the browser to refresh the study plan view, or call the get_study_plan MCP tool to verify the new schedule."
+      }
+    },
+    {
+      "name": "Spec requirements traceability check",
+      "trigger": "PostFileSave",
+      "matcher": "requirements\\.md$",
+      "description": "When requirements change, checks if tasks.md needs updating to stay in sync.",
+      "action": {
+        "type": "prompt",
+        "prompt": "requirements.md was just saved. Review the change and check if any acceptance criteria were added, removed, or modified. If so, identify which tasks in tasks.md are affected and suggest updates to keep the implementation plan in sync with the requirements."
+      }
+    },
+    {
+      "name": "CSS change — responsive layout reminder",
+      "trigger": "PostFileSave",
+      "matcher": "style\\.css$",
+      "description": "After CSS edits, reminds Kiro to verify responsive breakpoints are intact.",
+      "action": {
+        "type": "prompt",
+        "prompt": "style.css was just saved. Quickly confirm that the @media (max-width: 600px) single-column rule and the @media (min-width: 601px) .two-col grid rule are still present and correct. Also check that .completed strikethrough styles and .error-msg styles are intact."
+      }
+    }
+  ]
+}

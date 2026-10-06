@@ -1,0 +1,342 @@
+/* ============================================================
+   Base Reset
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   Body & Page Wrapper
+   ============================================================ */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  padding: 16px;
+}
+
+/* Centre all content and cap the width */
+body > * {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   Header  (Requirement 7.6)
+   ============================================================ */
+#header {
+  background: #2563eb;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+#header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* ============================================================
+   Dashboard  (Requirement 7.3)
+   ============================================================ */
+#dashboard {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  margin: 16px 0;
+}
+
+.dashboard-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.dashboard-label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+#total-count,
+#completed-count,
+#remaining-count {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+/* ============================================================
+   Content Sections  (Requirement 7.3)
+   ============================================================ */
+#task-form-section,
+#task-list-section,
+#study-plan-section {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+/* Section headings */
+#task-form-section h2,
+#task-list-section h2,
+#study-plan-section h2 {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  color: #374151;
+}
+
+/* ============================================================
+   Generate Plan Button Wrapper
+   ============================================================ */
+.generate-btn-wrapper {
+  text-align: center;
+  margin: 16px 0;
+}
+/* ============================================================
+   Responsive Layout
+   ============================================================ */
+
+/* --- Mobile: single-column, ≤ 600px (Requirement 7.4) --- */
+@media (max-width: 600px) {
+  body {
+    padding: 8px;
+  }
+
+  .two-col {
+    display: block;
+  }
+
+  .two-col > * {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #dashboard {
+    flex-wrap: wrap;
+  }
+
+  #dashboard .dashboard-item {
+    flex: 1 1 100%;
+  }
+
+  #task-form-section,
+  #task-list-section,
+  #study-plan-section {
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+}
+
+/* --- Wide: two-column grid, ≥ 601px (Requirement 7.5) --- */
+@media (min-width: 601px) {
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+/* ============================================================
+   Form Groups  (Task 3.3)
+   ============================================================ */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #374151;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 18px;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+#add-task-btn {
+  background: #2563eb;
+  color: white;
+  width: 100%;
+  margin-top: 8px;
+}
+
+#add-task-btn:hover {
+  background: #1d4ed8;
+}
+
+#generate-btn {
+  background: #059669;
+  color: white;
+  padding: 10px 28px;
+  font-size: 1rem;
+}
+
+#generate-btn:hover {
+  background: #047857;
+}
+
+/* ============================================================
+   Task Cards
+   ============================================================ */
+.task-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.task-card-info p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+}
+
+.task-card-info strong {
+  font-size: 1rem;
+  color: #1f2937;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* ============================================================
+   Schedule Blocks
+   ============================================================ */
+.schedule-block {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.schedule-block .time-range {
+  font-weight: 600;
+  color: #2563eb;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.schedule-block .block-subject {
+  flex: 1;
+}
+
+.complete-btn {
+  background: #2563eb;
+  color: white;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.complete-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ============================================================
+   Completed State  (Requirements 5.2, 5.3)
+   ============================================================ */
+.schedule-block.completed {
+  background: #f3f4f6;
+}
+
+.schedule-block.completed .block-subject,
+.schedule-block.completed .time-range {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.complete-btn.done {
+  background: #6b7280;
+}
+
+/* ============================================================
+   Validation / Success Messages
+   ============================================================ */
+.error-msg {
+  display: block;
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 3px;
+  min-height: 1em;
+}
+
+.success-msg {
+  color: #059669;
+  font-size: 0.875rem;
+  margin-top: 8px;
+  min-height: 1em;
+}
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+.empty-msg {
+  color: #6b7280;
+  font-size: 0.9rem;
+  padding: 12px 0;
+}
+
+/* ============================================================
+   Date Header for Study Plan
+   ============================================================ */
+.plan-date-header {
+  font-weight: 600;
+  color: #374151;
+  margin: 16px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e5e7eb;
+}

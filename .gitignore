@@ -1,0 +1,9 @@
+# Node dependencies (MCP server)
+mcp-server/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
